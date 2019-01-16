@@ -1,3 +1,5 @@
+<%@page import="kr.co.board1.config.SQL"%>
+<%@page import="kr.co.board1.config.DBConfig"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -6,10 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
-	//데이터베이스 연결 및 쿼리실행
-	final String HOST="jdbc:mysql://192.168.0.126:3306/bmj"; //변수 이름이 대문자 -> 상수[고정된 값이다.] 
-	final String USER="bmj";
-	final String PASS="1234";
+	
 	
 	// 파라미터 수신
 	request.setCharacterEncoding("UTF-8");
@@ -24,29 +23,12 @@
 	String addr2 = request.getParameter("addr2");
 	String regip = request.getRemoteAddr();
 	
-	// 1단계
-	Class.forName("com.mysql.jdbc.Driver");
-	
-	// 2단계
-	Connection conn = DriverManager.getConnection(HOST, USER, PASS);
+	Connection conn = DBConfig.getConnection();
 	
 	// 3단계
-	String sql = "INSERT INTO `JSP_MEMBER` SET ";
-		   /*sql += "seq=?,"; AUTO라 필요X*/
-		   sql += "uid=?,";
-		   sql += "pass=PASSWORD(?),";
-		   sql += "name=?,";
-		   sql += "nick=?,";
-		   sql += "email=?,";
-		   sql += "hp=?,";
-		   /*sql += "grade=?,"; DEFAULT 2지정 되있어서 필요X*/
-		   sql += "zip=?,";
-		   sql += "addr1=?,";
-		   sql += "addr2=?,";
-		   sql += "regip=?,";
-		   sql += "rdate=NOW()";
 	
-	PreparedStatement psmt = conn.prepareStatement(sql);
+	
+	PreparedStatement psmt = conn.prepareStatement(SQL.INSERT_REGISTER);
 	psmt.setString(1, uid);
 	psmt.setString(2, pass);
 	psmt.setString(3, name);
@@ -68,6 +50,6 @@
 	psmt.close();
 	
 	// 리다이렉트	
-	response.sendRedirect("../login.jsp");
+	response.sendRedirect("../login.jsp?register=success");
 	
 %>
