@@ -5,18 +5,22 @@
 		<meta charset="UTF-8">
 		<title>회원가입</title>
 		<link rel="stylesheet" href="./css/style.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="./js/check_validity.js"></script>
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		<script src="./js/zipcode.js"></script>
 	</head>
 	<body>
 		<div id="member">
 			<section class="register">
-				<form action="#" method="POST">
+				<form action="./proc/register.jsp" method="POST">
 					<section>
 						<table>
 							<caption>사이트 이용정보 입력</caption>
 							<tr>
 								<td>아이디</td>
 								<td>
-									<input type="text" name="id" placeholder="아이디를 입력" required />
+									<input type="text" name="uid" placeholder="아이디를 입력" required />
 									<span class="resultId"></span>
 								</td>
 							</tr>
@@ -49,18 +53,23 @@
 							</tr>
 							<tr>
 								<td>EMAIL</td>
-								<td><input type="email" name="email" placeholder="이메일을 입력" 	required /></td>
+								<td><input type="email" name="email" placeholder="이메일을 입력" 	required />
+								<span class="resultEmail"></span>
+								</td>
+								
 							</tr>
 							<tr>
 								<td>휴대폰</td>
-								<td><input type="text" name="hp" placeholder="-포함 13자리를 입력" maxlength="13" required /></td>
+								<td><input type="text" name="hp" placeholder="-포함 13자리를 입력" maxlength="13" required />
+								<span class="resultHp"></span>
+								</td>
 							</tr>
 							<tr>
 								<td>주소</td>
 								<td>
 									<div>
 										<input type="text" name="zip" id="zip" placeholder="우편번호" readonly />
-										<button type="button" class="btnFind">주소검색</button>
+										<button type="button" class="btnFind" onclick="zipcode()">주소검색</button>
 									</div>
 									<div>
 										<input type="text" name="addr1" id="addr1" size="50" placeholder="주소를 검색하세요." readonly />
