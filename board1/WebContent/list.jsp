@@ -13,8 +13,6 @@
 		pageContext.forward("./login.jsp");
 	}
 	
-	// 1단계
-	// 2단계
 	Connection conn = DBConfig.getConnection();
 
 	// 3단계
@@ -75,7 +73,7 @@
 					<% for(BoardVO vo : list){ %>
 					<tr>
 						<td><%= vo.getSeq() %></td>
-						<td><a href="#"><%= vo.getTitle() %></a>&nbsp;[<%= vo.getComment() %>]</td>
+						<td><a href="./view.jsp?seq=<%= vo.getSeq() %>"><%= vo.getTitle() %></a>&nbsp;[<%= vo.getComment() %>]</td>
 						<td><%= vo.getNick() %></td>
 						<td><%= vo.getRdate().substring(2, 10)  %></td>
 						<td><%= vo.getHit() %></td>

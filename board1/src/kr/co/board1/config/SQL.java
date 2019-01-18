@@ -16,6 +16,14 @@ public class SQL {
 												+ "rdate=NOW()";
 	
 	public static final String SELECT_LIST = "SELECT b.*, nick FROM `JSP_BOARD` AS b JOIN `JSP_MEMBER` AS m ON b.uid = m.uid ORDER BY b.seq DESC";//글쓴이를 아이디가 아닌 닉네임으로 표시할때
+	public static final String SELECT_VIEW = "SELECT * FROM `JSP_BOARD` WHERE seq=?";
+	public static final String UPDATE_HIT = "UPDATE `JSP_BOARD` SET hit=hit+1 WHERE seq=?";
+	public static final String DELETE_BOARD  = "DELETE FROM `JSP_BOARD` WHERE seq=?";
+	public static final String UPDATE_BOARD  = "UPDATE `JSP_BOARD` SET "
+													+ "title=?,"
+													 + "content=?"
+													 + " WHERE seq=?";
+
 	
 	
 }
