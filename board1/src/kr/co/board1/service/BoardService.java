@@ -141,12 +141,12 @@ public class BoardService {
 		return parent;
 	}
 	
-	public ArrayList<BoardVO> listComment(int parent) throws Exception {
+	public ArrayList<BoardVO> listComment(String parent) throws Exception {
 		
 		Connection conn = DBConfig.getConnection();
 		// 3
 		PreparedStatement psmt = conn.prepareStatement(SQL.SELECT_COMMENT);
-		psmt.setInt(1, parent);
+		psmt.setString(1, parent);
 		
 		// 4
 		ResultSet rs = psmt.executeQuery();
