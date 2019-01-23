@@ -120,7 +120,7 @@
 						<span class="nick">닉네임</span>
 						<span class="date">날짜</span>
 					</span>
-					<textarea>댓글 내용</textarea>
+					<textarea readonly>댓글 내용</textarea>
 					<div>
 						<a href="./proc/commentDelete.jsp?seq=?&parent=?" class="del">삭제</a>
 						<a href="#" class="mod">수정</a>

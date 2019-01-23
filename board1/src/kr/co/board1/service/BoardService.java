@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,6 @@ import kr.co.board1.config.DBConfig;
 import kr.co.board1.config.SQL;
 import kr.co.board1.vo.BoardVO;
 import kr.co.board1.vo.MemberVO;
-
 public class BoardService {
 
 	private static BoardService service = new BoardService();
@@ -30,7 +30,65 @@ public class BoardService {
 	}
 	
 	public void insertBoard() throws Exception {}
-	public void list() throws Exception {}
+	
+public int getTotal() throws Exception {
+		
+		int total = 0;
+		Connection conn = DBConfig.getConnection();
+		Statement stmt = conn.createStatement();
+		
+		ResultSet rs = stmt.executeQuery(SQL.SELECT_COUNT);
+		if(rs.next()) {
+			total = rs.getInt(1);
+		}
+		rs.close();
+		stmt.close();
+		conn.close();
+		
+		return total;
+	}
+	
+	public ArrayList<BoardVO> list(int start) throws Exception {
+		
+		
+		Connection conn = DBConfig.getConnection();
+
+		// 3단계
+		PreparedStatement psmt = conn.prepareStatement(SQL.SELECT_LIST);
+		psmt.setInt(1, start);
+		
+		// 4단계
+		ResultSet rs = psmt.executeQuery();
+		
+		// 5단계
+		ArrayList<BoardVO> list = new ArrayList<>();
+		
+		while(rs.next()){	// 컬럼명으로 해도 되고 순서 숫자로 해도 된다.
+			BoardVO vo = new BoardVO();
+			vo.setSeq(rs.getInt(1));
+			vo.setParent(rs.getInt(2));
+			vo.setComment(rs.getInt(3));
+			vo.setCate(rs.getString(4));
+			vo.setTitle(rs.getString(5));
+			vo.setContent(rs.getString(6));
+			vo.setFile(rs.getInt("file"));
+			vo.setHit(rs.getInt(8));
+			vo.setUid(rs.getString(9));
+			vo.setRegip(rs.getString(10));
+			vo.setRdate(rs.getString(11));
+			vo.setNick(rs.getString(12));
+			
+			list.add(vo);
+		}
+		
+		// 6단계
+		rs.close();
+		conn.close();
+		psmt.close();
+		
+		return list;
+		
+	}
 	
 	public void updateHit(int seq) throws Exception {
 		
