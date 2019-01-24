@@ -14,7 +14,8 @@ import kr.co.board1.config.DBConfig;
 import kr.co.board1.config.SQL;
 import kr.co.board1.vo.BoardVO;
 import kr.co.board1.vo.MemberVO;
-public class BoardService {
+
+	public class BoardService {
 
 	private static BoardService service = new BoardService();
 	
@@ -29,9 +30,62 @@ public class BoardService {
 		return vo;		
 	}
 	
-	public void insertBoard() throws Exception {}
+	public int write(int file, String... args) throws Exception {
+		
+		Connection conn = DBConfig.getConnection();
+		//트랜젝션 시작
+		conn.setAutoCommit(false); 
+		
+		
+		// 3단계
+		PreparedStatement psmt = conn.prepareStatement(SQL.INSERT_BOARD);
+		psmt.setString(1, args[0]);
+		psmt.setString(2, args[1]);
+		psmt.setString(3, args[2]);
+		psmt.setInt(4, file);
+		psmt.setString(5, args[3]);
+		
+		Statement stmt = conn.createStatement();
+		
+		// 4단계
+		psmt.executeUpdate();
+		ResultSet rs = stmt.executeQuery(SQL.SELECT_MAX_SEQ);
+		
+		// 트랜젝션 적용
+		conn.commit();
+		
+		// 5단계
+		int seq = 0;
+		if(rs.next()) {
+			seq = rs.getInt(1);
+		}
+		
+		// 6단계
+		
+		psmt.close();
+		conn.close();
+		psmt.close();
+		rs.close();
+		
+		return seq;
+		
+	}
 	
-public int getTotal() throws Exception {
+	public void fileInsert(int parent, String oldName, String newName) throws Exception{
+		
+		Connection conn = DBConfig.getConnection();
+		PreparedStatement psmt = conn.prepareStatement(SQL.INSERT_FILE);
+		psmt.setInt(1, parent);
+		psmt.setString(2, oldName);
+		psmt.setString(3, newName);
+		
+		psmt.executeUpdate();
+		
+		psmt.close();
+		conn.close();
+	}
+	
+	public int getTotal() throws Exception {
 		
 		int total = 0;
 		Connection conn = DBConfig.getConnection();
@@ -47,6 +101,56 @@ public int getTotal() throws Exception {
 		
 		return total;
 	}
+	
+	public int getLimitStart(String pg) {
+		int start = 0;
+		
+		if(pg == null){
+			start = 1;
+		}else{
+			start = Integer.parseInt(pg);
+		}
+			
+		return (start - 1) * 10;
+	}
+	
+	public int getPageEnd(int total) {
+		int pageEnd = 0;
+		
+		if(total % 10 == 0){
+			pageEnd = total / 10;
+		}else{
+			pageEnd = (total / 10) + 1; 
+		}
+		
+		return pageEnd;
+	}
+	public int getPageCountStart(int total, int limit) {
+		return total - limit;
+	}
+public int[] getPageGroupStartEnd(String pg, int pageEnd) {
+		
+		int[] groupStartEnd = new int[2];
+		int current = 0;
+		if(pg == null) {
+			current = 1;
+		}else {
+			current = Integer.parseInt(pg);
+		}
+		int currentPage = current;
+		int currentPageGroup = (int)Math.ceil(currentPage/10.0);
+		int groupStart = (currentPageGroup - 1) * 10 + 1;
+		int groupEnd = currentPageGroup * 10;
+		if(groupEnd > pageEnd){
+			groupEnd = pageEnd;
+		}
+		
+		groupStartEnd[0] = groupStart;
+		groupStartEnd[1] = groupEnd;
+		
+		return groupStartEnd;
+	}
+	public void getPageGroupEnd() {}
 	
 	public ArrayList<BoardVO> list(int start) throws Exception {
 		
