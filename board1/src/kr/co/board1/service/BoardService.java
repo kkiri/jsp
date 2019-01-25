@@ -205,13 +205,25 @@ public int[] getPageGroupStartEnd(String pg, int pageEnd) {
 		psmt.close();
 	}
 	
+	
+	public void updateDownHit(String parent) throws Exception{
+		Connection conn = DBConfig.getConnection();
+		
+		PreparedStatement psmt = conn.prepareStatement(SQL.UPDATE_DOWN_HIT);
+		psmt.setString(1, parent);
+		
+		psmt.executeUpdate();
+		psmt.close();
+		
+	}
+	
 	public BoardVO view(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		String seq = request.getParameter("seq");
 		
 		Connection conn = DBConfig.getConnection();
 		
-		PreparedStatement psmt = conn.prepareStatement(SQL.SELECT_VIEW);
+		PreparedStatement psmt = conn.prepareStatement(SQL.SELECT_VIEW_WITH_FILE);
 		psmt.setString(1, seq);
 		
 		ResultSet rs = psmt.executeQuery();
@@ -230,6 +242,9 @@ public int[] getPageGroupStartEnd(String pg, int pageEnd) {
 			vo.setUid(rs.getString(9));
 			vo.setRegip(rs.getString(10));
 			vo.setRdate(rs.getString(11));
+			vo.setOldName(rs.getString(14));
+			vo.setNewName(rs.getString(15));
+			vo.setDownload(rs.getInt(16));
 		}
 		
 		rs.close();

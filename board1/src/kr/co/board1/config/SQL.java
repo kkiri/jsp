@@ -22,7 +22,9 @@ public class SQL {
 /*public static final String SELECT_LIST   = "SELECT b.*, nick FROM `JSP_BOARD` AS b JOIN `JSP_MEMBER` AS m ON b.uid = m.uid ORDER BY b.seq DESC";//글쓴이를 아이디가 아닌 닉네임으로 표시할때*/
 	public static final String SELECT_LIST = "SELECT b.*, m.nick FROM `JSP_BOARD` AS b JOIN `JSP_MEMBER` AS m ON b.uid = m.uid WHERE parent=0 ORDER BY b.seq DESC LIMIT ?, 10";
 	public static final String SELECT_VIEW = "SELECT * FROM `JSP_BOARD` WHERE seq=?";
+	public static final String SELECT_VIEW_WITH_FILE = "SELECT * FROM `JSP_BOARD` AS b LEFT JOIN `JSP_FILE` AS f ON b.seq = f.parent WHERE b.seq=?";
 	public static final String UPDATE_HIT  = "UPDATE `JSP_BOARD` SET hit=hit+1 WHERE seq=?";
+	public static final String UPDATE_DOWN_HIT = "UPDATE `JSP_FILE` SET download=download+1 WHERE parent=?";
 	public static final String DELETE_BOARD  = "DELETE FROM `JSP_BOARD` WHERE seq=?";
 	public static final String UPDATE_BOARD  = "UPDATE `JSP_BOARD` SET "
 											 + "title=?,"

@@ -13,44 +13,38 @@
 <%@page import="kr.co.board1.config.DBConfig"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	
-	
 	String path = request.getServletContext().getRealPath("/data");
-	int maxSize = 1024 * 1024 * 10; //10MB
-	
+	int maxSize = 1024 * 1024 * 10; // 10MB
 	MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-	String title = mr.getParameter("subject");
-	String content = mr.getParameter("content");
-	String fileName = mr.getFilesystemName("file");
-	String regip = request.getRemoteAddr();
+	String title   		= mr.getParameter("subject");
+	String content 		= mr.getParameter("content");
+	String fileName		= mr.getFilesystemName("file");
+	String regip   		= request.getRemoteAddr();
 	
 	BoardService service = BoardService.getInstance();
 	MemberVO member = (MemberVO)session.getAttribute("member");
 	String uid = member.getId();
 	
-	
 	int file = 0;
 	if(fileName != null){
 		file = 1;
-		// 파일명 생성(UUID)
-		int idx = fileName.lastIndexOf("."); // 뒤에서 .까지
-		String ext = fileName.substring(idx); // 확장자 추출
+		// 1.파일명 생성(UUID)
+		int idx = fileName.lastIndexOf(".");
+		String ext = fileName.substring(idx);
 		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss_");
 		String now = sdf.format(date);
 		
-		String newFileName = now+uid+ext; // 199112120510_abcd.pptx
+		String newFileName = now+uid+ext; // 190124105012_abcd.pptx
 		
-		
-		// 파일명 변경
-		// long fileSize = 0;
+		// 2.파일명 변경
 		byte[] buf = new byte[1024];
 		
 		File oldFile = new File(path+"/"+fileName);
 		File newFile = new File(path+"/"+newFileName);
 		
-		FileInputStream fis = new FileInputStream(oldFile);
+		FileInputStream  fis = new FileInputStream(oldFile);
 		FileOutputStream fos = new FileOutputStream(newFile);
 		
 		int read = 0;
@@ -62,21 +56,22 @@
 			}
 			fos.write(buf, 0, read);
 		}
+		
 		fis.close();
 		fos.close();
 		
-		// oldFile.renameTo(newFile);
+		//oldFile.renameTo(newFile);
+		oldFile.delete(); // 원본은 제거
 		
-		oldFile.delete(); // 원본 제거
-		
-		//글 등록
+		// 3.글 등록
 		int seq = service.write(file, title, content, uid, regip);
-
-		// 파일테이블 INSERT
-		service.fileInsert(seq, fileName, newFileName);		
+		
+		// 4.파일 등록
+		service.fileInsert(seq, fileName, newFileName);
 	}else{
 		service.write(file, title, content, uid, regip);
 	}
 	
 	response.sendRedirect("../list.jsp");	
+	
 %>
