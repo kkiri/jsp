@@ -1,0 +1,78 @@
+#sub {
+  width: 100%;
+  height: auto;
+}
+#sub > div {
+  width: 100%;
+  overflow: hidden;
+}
+#sub > div:nth-child(1) {
+  height: 184px;
+  background-image: url('../img/sub_top_bg.jpg');
+}
+#sub >div:nth-child(1) > img {
+  margin-left: 10px;
+  margin-top: 135px;
+}
+#sub > div:nth-child(2) { height: auto; }
+#sub > div > aside {
+  float: left;
+  width: 176px;
+  height: 650px;
+  background: url('../img/sub_aside_bg_line.png') no-repeat right;
+}
+#sub > div > aside > img{
+  padding: 12px;
+}
+#sub > div > aside > ul {
+  width: 173px;
+  height: 233px;
+  background: url('../img/sub_aside_bg_lnb.png') no-repeat;
+  padding-top: 30px;
+  box-sizing: border-box;
+}
+#sub > div > aside > ul > li {
+  width: 100%;
+  height: 29px;
+  margin-bottom: 6px;
+}
+#sub > div > aside > ul > li > a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-size: 0px;
+}
+
+/*팜스토리 메뉴*/
+.on {}
+#sub > div > aside > ul > li:nth-child(1) > a { background: url('../img/sub_cate4_lnb1.png') no-repeat; }
+#sub > div > aside > ul > li:nth-child(1) > a:hover { background: url('../img/sub_cate4_lnb1_ov.png') no-repeat; }
+#sub > div > aside > ul > li:nth-child(1).on > a{ background: url('../img/sub_cate4_lnb1_ov.png') no-repeat; }
+
+#sub > div > article {
+  float: left;
+  width: 800px;
+  min-height: 650px;
+  padding-left: 42px;
+  box-sizing: border-box;
+}
+#sub > div > article > nav {
+  width: 100%;
+  height: 72px;
+  border-bottom: 1px solid #c2c2c2;
+  margin-bottom: 32px;
+  position: relative;
+}
+#sub > div > article > nav > img { position: absolute; left: 0; bottom: 10px; }
+#sub > div > article > nav > p { position: absolute; right: 0; bottom: 10px; color: #8c8c8; }
+#sub > div > article > nav > p > strong { font-weight: 600; color: #96ba15; }
+
+#sub > div > article > .sub_ati_img {
+  width: 100%; height: 164px;
+  background: url('../img/sub_page1_article_bg.jpg') no-repeat;
+}
+#sub > div > article > .sub_ati_img > img { margin-top: 25px; }
+#sub > div > article > .sub_txt1 {
+   height: 240px;
+   margin-top:30px;
+   background: url('../img/sub_page1_article_family.png') no-repeat right bottom;}
