@@ -7,6 +7,7 @@
     <title>팜스토리</title>
     <link rel="stylesheet" href="/farmstory/css/index.css">
     <link rel="stylesheet" href="/farmstory/css/board.css">
+    <link rel="stylesheet" href="/farmstory/css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/slider.js"></script>
   </head>
@@ -28,9 +29,9 @@
         <img src="/farmstory/img/head_txt_img.png" alt="3만원 이상 무료배송">
         <ul class="gnb">
           <li><a href="/farmstory/introduction/hello.do">팜스토리소개</a></li>
-          <li><a href="/farmstory/market/market.do">장보기</a></li>
-          <li><a href="/farmstory/croptalk/story.do">농작물이야기</a></li>
-          <li><a href="/farmstory/event/event.do">이벤트</a></li>
-          <li><a href="/farmstory/community/notice.do">커뮤니티</a></li>
+          <li><a href="/farmstory/board/list.do?gr=market&cate=market">장보기</a></li>
+          <li><a href="/farmstory/board/list.do?gr=croptalk&cate=story">농작물이야기</a></li>
+          <li><a href="/farmstory/board/list.do?gr=event&cate=event">이벤트</a></li>
+          <li><a href="/farmstory/board/list.do?gr=community&cate=notice">커뮤니티</a></li>
         </ul>
       </header>

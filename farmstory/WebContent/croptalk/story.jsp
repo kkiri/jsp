@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
-<link rel="stylesheet" href="/farmstory/css/croptalk.css">
       <section id="sub">
         <div>
           <img src="../img/sub_top_tit3.png" alt="CROPTALK"/>
@@ -21,13 +20,7 @@
                 HOME > 농작물이야기 > <strong>농작물이야기</strong>
               </p>
             </nav>
-              <div class="sub_ati_img">
-                <img src="../img/sub_page1_article_txt.png" alt="건강한 먹거리를 위해 노력합니다.">
-              </div>
-              <p class="sub_txt1">
 
-
-              </p>
           </article>
         </div>
       </section>
