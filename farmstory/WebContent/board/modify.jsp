@@ -2,20 +2,20 @@
 <%@ include file="../_header.jsp"%>
 <jsp:include page="./_aside_${gr}.jsp" />			
 <div id="board">
-	<h3>글쓰기</h3>
+	<h3>글수정</h3>
 	<div class="write">
-		<form action="/farmstory/board/write.do" method="post">
+		<form action="/farmstory/board/modify.do?gr=${gr}&cate=${cate}&seq=${seq}" method="post">
 			<input type="hidden" name="gr" value="${gr}" />
 			<input type="hidden" name="cate" value="${cate}" />
 			<table>
 				<tr>
 					<td>제목</td>
 					<td><input type="text" name="subject"
-						placeholder="제목을 입력하세요." required /></td>
+						value="${vo.title}" required /></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="content" rows="20" required></textarea>
+					<td><textarea name="content" rows="20" required>${vo.content}</textarea>
 					</td>
 				</tr>
 				<tr>

@@ -9,8 +9,8 @@
           <aside>
             <img src="../img/sub_aside_cate1_tit.png" alt="팜스토리소개">
             <ul>
-              <li class="on"><a href="./hello.do">인사말</a></li>
-              <li><a href="./direction.do">찾아오시는길</a></li>
+              <li class="on"><a href="./hello.do?gr=intro">인사말</a></li>
+              <li><a href="./direction.do?gr=intro">찾아오시는길</a></li>
             </ul>
           </aside>
           <article>

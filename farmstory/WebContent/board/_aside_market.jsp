@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/farmstory/css/market.css">
       <section id="sub">
         <div>
-          <img src="../img/sub_aside_cate2_tit.png" alt="장보기" />
+          <img src="../img/sub_top_tit2.png" alt="장보기" />
         </div>
         <div>
           <aside>

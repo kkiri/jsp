@@ -34,7 +34,7 @@ input, textarea { outline: none; }
 #board > .btnWrite {
 	float: right;
 	padding: 7px;
-	margin-top: -50px;
+	margin-top: -30px;
 	border: 1px solid #3b3c3f;
 	background: #4b545e;
 	color: #fff;

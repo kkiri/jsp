@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="./_header.jsp" %>
       <main>
+        <img src="/farmstory/img/float_banner_tit.png" alt="팜카드신청" class="farm_card"/>
         <div class="slider">
           <ul>
             <li><a href="#"><img src="./img/main_slide_img1.jpg" alt="슬라이드1"></a></li>
@@ -24,93 +26,39 @@
             <img src="./img/main_latest1_tit.png" alt="텃밭가꾸기">
             <img src="./img/main_latest1_img.jpg" alt="이미지">
             <table>
+             <c:forEach var="vo" items="${latest1}">
               <tr>
                 <td>></td>
-                <td>쑥쑥 자라는 고추111111111</td>
-                <td>19-02-12</td>
+                <td><a href="/farmstory/board/view.do?gr=croptalk&cate=grow&seq=${vo.seq}">${ vo.title }</a></td>
+                <td>${ vo.rdate }</td>
               </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
+            </c:forEach>
             </table>
           </div>
           <div>
             <img src="./img/main_latest2_tit.png" alt="텃밭가꾸기">
             <img src="./img/main_latest2_img.jpg" alt="이미지">
             <table>
+              <c:forEach var="vo" items="${latest2}">
               <tr>
                 <td>></td>
-                <td>쑥쑥 자라는 고추111111111</td>
-                <td>19-02-12</td>
+                <td><a href="/farmstory/board/view.do?gr=croptalk&cate=school&seq=${vo.seq}">${ vo.title }</a></td>
+                <td>${ vo.rdate }</td>
               </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
+            </c:forEach>
             </table>
           </div>
           <div>
             <img src="./img/main_latest3_tit.png" alt="텃밭가꾸기">
             <img src="./img/main_latest3_img.jpg" alt="이미지">
             <table>
+              <c:forEach var="vo" items="${latest3}">
               <tr>
                 <td>></td>
-                <td>쑥쑥 자라는 고추111111111</td>
-                <td>19-02-12</td>
+                <td><a href="/farmstory/board/view.do?gr=croptalk&cate=story&seq=${vo.seq}">${ vo.title }</a></td>
+                <td>${ vo.rdate }</td>
               </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
-              <tr>
-                <td>></td>
-                <td>쑥쑥 자라는 고추</td>
-                <td>19-02-12</td>
-              </tr>
+            </c:forEach>
             </table>
           </div>
         </div>

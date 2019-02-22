@@ -11,6 +11,8 @@ a { text-decoration: none; color: #111; }
   height: auto;
   margin: 0 auto;
 }
+/*이벤트베너*/
+.farm_card{ position:absolute; right:100px; top:200px; }
 /*헤더*/
 header {
   width: 100%;
@@ -58,17 +60,26 @@ header > .gnb > li > a {
   background-position-y: 6px;
   background-repeat: no-repeat;
 }
-header > .gnb > li:nth-child(1) > a { background-image: url('../img/head_menu1.png');}
-header > .gnb > li:nth-child(2) > a { background-image: url('../img/head_menu2.png');}
-header > .gnb > li:nth-child(3) > a { background-image: url('../img/head_menu3.png');}
-header > .gnb > li:nth-child(4) > a { background-image: url('../img/head_menu4.png');}
-header > .gnb > li:nth-child(5) > a { background-image: url('../img/head_menu5.png');}
+header > .gnb > li:nth-child(1) > a { background: url('../img/head_menu1.png')  no-repeat;}
+header > .gnb > li:nth-child(2) > a { background: url('../img/head_menu2.png') no-repeat;}
+header > .gnb > li:nth-child(3) > a { background: url('../img/head_menu3.png') no-repeat;}
+header > .gnb > li:nth-child(4) > a { background: url('../img/head_menu4.png') no-repeat;}
+header > .gnb > li:nth-child(5) > a { background: url('../img/head_menu5.png') no-repeat;}
 
-header > .gnb > li:nth-child(1) > a:hover { background-image: url('../img/head_menu1_ov.png');}
-header > .gnb > li:nth-child(2) > a:hover { background-image: url('../img/head_menu2_ov.png');}
-header > .gnb > li:nth-child(3) > a:hover { background-image: url('../img/head_menu3_ov.png');}
-header > .gnb > li:nth-child(4) > a:hover { background-image: url('../img/head_menu4_ov.png');}
-header > .gnb > li:nth-child(5) > a:hover { background-image: url('../img/head_menu5_ov.png');}
+header > .gnb > li:nth-child(1) > a:hover { background: url('../img/head_menu1_ov.png') no-repeat;}
+header > .gnb > li:nth-child(2) > a:hover { background: url('../img/head_menu2_ov.png') no-repeat;}
+header > .gnb > li:nth-child(3) > a:hover { background: url('../img/head_menu3_ov.png') no-repeat;}
+header > .gnb > li:nth-child(4) > a:hover { background: url('../img/head_menu4_ov.png') no-repeat;}
+header > .gnb > li:nth-child(5) > a:hover { background: url('../img/head_menu5_ov.png') no-repeat;}
+
+header > .gnb > li:nth-child(1).on > a { background: url('../img/head_menu1_ov.png') no-repeat;}
+header > .gnb > li:nth-child(2).on a { background: url('../img/head_menu2_ov.png') no-repeat;}
+header > .gnb > li:nth-child(3).on > a { background: url('../img/head_menu3_ov.png') no-repeat;}
+header > .gnb > li:nth-child(4).on > a { background: url('../img/head_menu4_ov.png') no-repeat;}
+header > .gnb > li:nth-child(5).on > a { background: url('../img/head_menu5_ov.png') no-repeat;}
+
+header { position: relative; }
+header > .gnb > li:nth-child(2) > a > img { position: absolute; top:-20px; left: 300px; }
 /*메인*/
 main {
   width: 100%;
@@ -76,7 +87,6 @@ main {
 }
 main > div {
   width: 100%;
-  margin-top: 10px;
 }
 main > .slider { height: 312px; position: relative; overflow: hidden; }
 main > .slider > ul {
@@ -130,7 +140,7 @@ main > .latest > div > table {
   bottom: 19px;
   color: #6a6a6a;
 }
-main > .latest > div > table tr > td { font-size: 0.95em; }
+main > .latest > div > table tr > td > a { font-size: 0.95em; color: #6a6a6a;}
 main > .latest > div > table tr > td:nth-child(1) { font-size: 0.8em; margin-right: 3px; }
 main > .latest > div > table tr > td:nth-child(2) {
   width: 136px;

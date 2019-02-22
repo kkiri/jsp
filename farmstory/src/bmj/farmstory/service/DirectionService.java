@@ -9,6 +9,9 @@ public class DirectionService implements CommonAction {
 
 	@Override
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		String gr = req.getParameter("gr");
+		req.setAttribute("gr", gr);
+		
 		return "/introduction/direction.jsp";
 	}
 
